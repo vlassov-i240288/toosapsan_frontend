@@ -14,13 +14,14 @@ export default function Header() {
     return (
         <header className="">
             <div className='flex flex-col gap-10 p-5'>
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-10">
                     <h1 className='text-3xl'>Грузоперевозки по странам СНГ.</h1>
                     <p>
                         <span className="text-amber-400">TOO Sap San</span> — надежный партнер в сфере грузоперевозок.
                         Мы обеспечиваем железнодорожные перевозки любой сложности, а также международные и внутренние автомобильные доставки.
                     </p>
-                    <p className="text-amber-400">
+                    <div>
+                        <p className="text-amber-400">
                         Почему выбирают нас:
                     </p>
                     <ol>
@@ -29,6 +30,7 @@ export default function Header() {
                         <li className="flex items-center gap-2"><span><Bs3Circle size={20} color="oklch(76.9% 0.188 70.08)" /></span>Услуга «от двери до двери».</li>
                         <li className="flex items-center gap-2"><span><Bs4Circle size={20} color="oklch(76.9% 0.188 70.08)" /></span>Команда профессионалов и собственные активы.</li>
                     </ol>
+                    </div>
                     <p className="text-amber-400">
                         С нами логистика становится простой и предсказуемой.
                     </p>

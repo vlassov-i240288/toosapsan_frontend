@@ -1,4 +1,5 @@
 import { useState } from "react";
+import logo from "../../assets/images/logo.png";
 
 export default function MainMenu() {
     const [open, setOpen] = useState(false);
@@ -8,8 +9,8 @@ export default function MainMenu() {
             <nav className="flex justify-between h-15 items-center border-b border-amber-400 px-5 relative z-50">
                 <div>
                     <a href="">
-                        logo sap san
-                        {/* <img src="" alt="logo" /> */}
+                        <img className="w-20" src={logo} alt="logo" />
+                        TOO Sap San
                     </a>
                 </div>
 
