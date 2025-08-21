@@ -35,8 +35,8 @@ export default function Header() {
                         С нами логистика становится простой и предсказуемой.
                     </p>
                     <div className="flex flex-col gap-2">
-                        <button className="border border-amber-400 p-3" onClick={() => handleOrder("АВТО перевозка")}>Заказать АВТО перевозку</button>
-                        <button className="border border-amber-400 p-3" onClick={() => handleOrder("Ж/Д перевозка")}>Заказать Ж/Д перевозку</button>
+                        <button className="rounded border bg-amber-400 text-black border-amber-400 p-3" onClick={() => handleOrder("АВТО перевозка")}>Заказать АВТО перевозку</button>
+                        <button className="rounded border bg-amber-400 text-black border-amber-400 p-3" onClick={() => handleOrder("Ж/Д перевозка")}>Заказать Ж/Д перевозку</button>
                     </div>
                 </div>
             </div>
