@@ -9,8 +9,8 @@ import {
 
 function AplicationModal({ children, onClose }) {
     return (
-        <div className="">
-            <form action="" className='border border-amber-400 p-5 rounded'>
+        <div className="fixed inset-0 bg-[#242424]/80 bg-opacity-50 flex items-center justify-center z-50">
+            <form action="" className='border border-amber-400 p-5 rounded bg-[#242424] w-[90%] max-w-2xl'>
                 
                 <div className='flex flex-col gap-2 relative'>
                     <p className='text-white text-2xl font-bold'>Данные о грузе :</p>

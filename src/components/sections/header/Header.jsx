@@ -3,10 +3,6 @@ import { useState } from "react";
 import AplicationModal from "../../modals/ApplicationModal";
 
 export default function Header() {
-    // const handleOrder = (type) => {
-    //     console.log(`Заказ: ${type}`);
-    // };
-
     const [openModal, setOpenModal] = useState(false);
     const [orderType, setOrderType] = useState("");
 
@@ -28,10 +24,10 @@ export default function Header() {
                         Почему выбирают нас:
                     </p>
                     <ol>
-                        <li className="flex items-center gap-2"><Bs1Circle size={20} color="oklch(76.9% 0.188 70.08)" />Доставка точно в срок.</li>
-                        <li className="flex items-center gap-2"><Bs2Circle size={20} color="oklch(76.9% 0.188 70.08)" />Оптимальные маршруты и привлекательные цены.</li>
-                        <li className="flex items-center gap-2"><Bs3Circle size={20} color="oklch(76.9% 0.188 70.08)" />Услуга «от двери до двери».</li>
-                        <li className="flex items-center gap-2"><Bs4Circle size={20} color="oklch(76.9% 0.188 70.08)" />Команда профессионалов и собственные активы.</li>
+                        <li className="flex items-center gap-2"><span><Bs1Circle size={20} color="oklch(76.9% 0.188 70.08)" /></span>Доставка точно в срок.</li>
+                        <li className="flex items-center gap-2"><span><Bs2Circle size={20} color="oklch(76.9% 0.188 70.08)" /></span>Оптимальные маршруты и привлекательные цены.</li>
+                        <li className="flex items-center gap-2"><span><Bs3Circle size={20} color="oklch(76.9% 0.188 70.08)" /></span>Услуга «от двери до двери».</li>
+                        <li className="flex items-center gap-2"><span><Bs4Circle size={20} color="oklch(76.9% 0.188 70.08)" /></span>Команда профессионалов и собственные активы.</li>
                     </ol>
                     <p className="text-amber-400">
                         С нами логистика становится простой и предсказуемой.
