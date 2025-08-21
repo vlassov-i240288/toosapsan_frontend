@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
     HiOutlineLocationMarker,
     HiOutlineSwitchHorizontal,
@@ -8,70 +9,85 @@ import {
 } from "react-icons/hi";
 
 function AplicationModal({ children, onClose }) {
-    return (
-        <div className="fixed inset-0 bg-[#242424]/80 bg-opacity-50 flex items-center justify-center z-50">
-            <form action="" className='border border-amber-400 p-5 rounded bg-[#242424] w-[90%] max-w-2xl'>
-                
-                <div className='flex flex-col gap-2 relative'>
-                    <p className='text-white text-2xl font-bold'>Данные о грузе :</p>
-                    <button 
-                    onClick={onClose} 
-                    className="absolute right-0 text-white"
-                >
-                    ✖
-                </button>
-                {children}
-                    <div className='flex flex-col gap-2'>
+    const [show, setShow] = useState(false);
 
-                        <div className='relative'>
-                            <div className='absolute top-[10px] left-[10px] '>
+    useEffect(() => {
+        // Включаем анимацию после маунта
+        setTimeout(() => setShow(true), 10);
+    }, []);
+
+    const handleClose = () => {
+        setShow(false);
+        setTimeout(() => onClose(), 300); // ждём пока завершится transition
+    };
+
+    return (
+        <div className={`fixed inset-0 flex items-center justify-center z-50 transition-opacity duration-300 ${show ? "bg-[#242424]/80 opacity-100" : "opacity-0"}`}>
+            <form
+                action=""
+                className={`border border-amber-400 p-5 rounded bg-[#242424] w-[90%] max-w-2xl transform transition-all duration-300 ${show ? "scale-100 opacity-100" : "scale-95 opacity-0"}`}
+            >
+                <div className="flex flex-col gap-2 relative">
+                    <p className="text-white text-2xl font-bold">Данные о грузе :</p>
+                    <button 
+                        type="button"
+                        onClick={handleClose} 
+                        className="absolute right-0 text-white"
+                    >
+                        ✖
+                    </button>
+                    {children}
+                    
+                    <div className="flex flex-col gap-2">
+                        <div className="relative">
+                            <div className="absolute top-[10px] left-[10px] ">
                                 <HiOutlineLocationMarker size={25} color="oklch(76.9% 0.188 70.08)" />
                             </div>
-                            <input className='bg-amber-50 p-3 ps-10 w-full rounded text-gray-800' type="text" placeholder='Откуда' />
+                            <input className="bg-amber-50 p-3 ps-10 w-full rounded text-gray-800" type="text" placeholder="Откуда" />
                         </div>
 
-
-                        <div className='flex w-10 h-10 cursor-pointer items-center self-center'>
+                        <div className="flex w-10 h-10 cursor-pointer items-center self-center">
                             <HiOutlineSwitchHorizontal size={25} color="oklch(76.9% 0.188 70.08)" />
                         </div>
 
-                        <div className='relative'>
-                            <div className='absolute top-[10px] left-[10px]'>
+                        <div className="relative">
+                            <div className="absolute top-[10px] left-[10px]">
                                 <HiOutlineLocationMarker size={25} color="oklch(76.9% 0.188 70.08)" />
                             </div>
-                            <input className='bg-amber-50 p-3 ps-10 w-full rounded text-gray-800' type="text" placeholder='Куда' />
+                            <input className="bg-amber-50 p-3 ps-10 w-full rounded text-gray-800" type="text" placeholder="Куда" />
                         </div>
                     </div>
-                    <div className='flex flex-col gap-2'>
-                        <div className='relative'>
-                            <div className='absolute top-[10px] left-[10px]'>
+
+                    <div className="flex flex-col gap-2">
+                        <div className="relative">
+                            <div className="absolute top-[10px] left-[10px]">
                                 <HiOutlineCube size={25} color="oklch(76.9% 0.188 70.08)" />
                             </div>
-
-                            <input className='bg-amber-50 p-3 ps-10 w-full rounded text-gray-800' type="number" placeholder='Объём' />
+                            <input className="bg-amber-50 p-3 ps-10 w-full rounded text-gray-800" type="number" placeholder="Объём" />
                         </div>
-                        <div className='relative'>
-                            <div className='absolute top-[10px] left-[10px]'>
+
+                        <div className="relative">
+                            <div className="absolute top-[10px] left-[10px]">
                                 <HiOutlineScale size={25} color="oklch(76.9% 0.188 70.08)" />
                             </div>
-                            <input className='bg-amber-50 p-3 ps-10 w-full rounded text-gray-800' type="number" placeholder='Вес' />
+                            <input className="bg-amber-50 p-3 ps-10 w-full rounded text-gray-800" type="number" placeholder="Вес" />
                         </div>
                     </div>
-                    <p className='text-white text-2xl font-bold'>Контактные данные :</p>
-                    <div className='flex flex-col gap-2'>
 
-                        <div className='relative'>
-                            <div className='absolute top-[10px] left-[10px]'>
+                    <p className="text-white text-2xl font-bold">Контактные данные :</p>
+                    <div className="flex flex-col gap-2">
+                        <div className="relative">
+                            <div className="absolute top-[10px] left-[10px]">
                                 <HiOutlineUser size={25} color="oklch(76.9% 0.188 70.08)" />
                             </div>
-                            <input className='bg-white p-3 ps-10 w-full rounded text-gray-800' type="text" placeholder='Имя' />
+                            <input className="bg-white p-3 ps-10 w-full rounded text-gray-800" type="text" placeholder="Имя" />
                         </div>
 
-                        <div className='relative'>
-                            <div className='absolute top-[10px] left-[10px]'>
+                        <div className="relative">
+                            <div className="absolute top-[10px] left-[10px]">
                                 <HiPhone size={25} color="oklch(76.9% 0.188 70.08)" />
                             </div>
-                            <input className='bg-white p-3 ps-10 w-full rounded text-gray-800' type="text" placeholder='Номер телефона' />
+                            <input className="bg-white p-3 ps-10 w-full rounded text-gray-800" type="text" placeholder="Номер телефона" />
                         </div>
                     </div>
 
@@ -80,9 +96,8 @@ function AplicationModal({ children, onClose }) {
                     </button>
                 </div>
             </form>
-
         </div>
-    )
+    );
 }
 
-export default AplicationModal
+export default AplicationModal;
