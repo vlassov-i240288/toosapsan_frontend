@@ -1,0 +1,12 @@
+header {
+    /* background-image: url(../../../assets/images/fon.jpg); */
+    background-image: url(../../../assets/images/intro-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* transform: rotate(180deg) */
+}
+
+.heading_fon {
+    color: rgba(36, 36, 36, 0.05);
+    transform: rotate(-15deg)
+}

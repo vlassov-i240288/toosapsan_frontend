@@ -1,22 +1,31 @@
 import { useState } from "react";
 import logo from "../../assets/images/logo.png";
+import { BiNotepad } from "react-icons/bi";
+import { BiLayer } from "react-icons/bi";
+import { BiIdCard } from "react-icons/bi";
 
 export default function MainMenu() {
     const [open, setOpen] = useState(false);
 
     return (
         <>
-            <nav className="flex justify-between h-15 items-center border-b border-amber-400 px-5 relative z-50">
-                <div>
-                    <a href="">
-                        <img className="w-20" src={logo} alt="logo" />
-                        TOO Sap San
-                    </a>
-                </div>
 
-                <div>
-                    {/* Бургер-кнопка */}
-                    <button
+    <nav className="center fixed top-0 left-0 w-full flex justify-between h-[80px] items-center shadow bg-[#ffffff] z-50">
+
+
+
+                    <div>
+                        <a className="relative" href="">
+                            <img className="w-30" src={logo} alt="logo" />
+                            <span className="absolute italic font-bold w-[130px] top-[6px] left-[18px] text-[20px]">TOO SAPSAN TL</span>
+                        </a>
+                    </div>
+
+
+                    <div>
+
+                        {/* Бургер-кнопка */}
+                        {/* <button
                         className="flex flex-col justify-between w-8 h-[22px] md:hidden relative z-50"
                         onClick={() => setOpen(!open)}
                     >
@@ -35,9 +44,20 @@ export default function MainMenu() {
                                 open ? "-rotate-45 -translate-y-2.5" : ""
                             }`}
                         />
-                    </button>
-                </div>
+                    </button> */}
+
+                        <ul className="flex gap-10">
+                            <li><a className="flex items-center gap-1 font-bold text-[17px]" href=""><BiNotepad /> О нас</a></li>
+                            <li><a className="flex items-center gap-1 font-bold text-[17px]" href=""><BiLayer /> Услуги</a></li>
+                            <li><a className="flex items-center gap-1 font-bold text-[17px]" href=""><BiIdCard />Контакты</a></li>
+                        </ul>
+
+                    </div>
+
+
+
             </nav>
+            
 
             {/* Оверлей (клик закроет меню) */}
             {open && (
@@ -49,9 +69,8 @@ export default function MainMenu() {
 
             {/* Мобильное меню */}
             <div
-                className={`fixed top-0 left-0 w-64 h-full bg-neutral-900 text-white transform transition-transform duration-300 ease-in-out z-50 ${
-                    open ? "translate-x-0" : "-translate-x-full"
-                }`}
+                className={`fixed top-0 left-0 w-64 h-full bg-neutral-900 text-white transform transition-transform duration-300 ease-in-out z-50 ${open ? "translate-x-0" : "-translate-x-full"
+                    }`}
             >
                 <ul className="flex flex-col gap-6 p-6 text-lg">
                     <li>

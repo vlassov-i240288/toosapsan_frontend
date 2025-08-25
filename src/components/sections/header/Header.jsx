@@ -1,6 +1,7 @@
 import { Bs1Circle, Bs2Circle, Bs3Circle, Bs4Circle } from "react-icons/bs";
 import { useState } from "react";
 import AplicationModal from "../../modals/ApplicationModal";
+import "./Header.css"
 
 export default function Header() {
     const [openModal, setOpenModal] = useState(false);
@@ -12,8 +13,9 @@ export default function Header() {
     };
 
     return (
-        <header className="">
-            <div className='flex flex-col gap-10 p-5'>
+        <header className="h-[100vh] pt-[100px] flex items-center justify-center">
+            <h1 className="heading_fon font-black text-[10vw] items-center justify-center">ГРУЗОПЕРЕВОЗКИ</h1>
+            {/* <div className='flex flex-col gap-10 p-5'>
                 <div className="flex flex-col gap-10">
                     <h1 className='text-3xl'>Грузоперевозки по странам СНГ.</h1>
                     <p>
@@ -39,12 +41,12 @@ export default function Header() {
                         <button className="rounded border bg-amber-400 text-black border-amber-400 p-3" onClick={() => handleOrder("Ж/Д перевозка")}>Заказать Ж/Д перевозку</button>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             {/* модалка */}
-            {openModal && (
+            {/* {openModal && (
                 <AplicationModal onClose={() => setOpenModal(false)}/>
-            )}
+            )} */}
         </header>
     )
 }
