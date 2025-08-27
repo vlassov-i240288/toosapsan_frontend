@@ -13,8 +13,11 @@ export default function Header() {
     };
 
     return (
-        <header className="h-[100vh] pt-[100px] flex items-center justify-center">
-            <h1 className="heading_fon font-black text-[10vw] items-center justify-center">ГРУЗОПЕРЕВОЗКИ</h1>
+        <header className="h-screen pt-[100px] flex items-center justify-center relative">
+
+            <h1 className="heading_fon font-black text-[12vw] items-center justify-center">ГРУЗОПЕРЕВОЗКИ</h1>
+            <p className="absolute text-center text-2xl center"><span className="text-amber-400">TOO SapSan TL</span> — надежный партнер в сфере грузоперевозок. Мы обеспечиваем железнодорожные перевозки любой сложности, а также международные и внутренние автомобильные доставки.</p>
+            
             {/* <div className='flex flex-col gap-10 p-5'>
                 <div className="flex flex-col gap-10">
                     <h1 className='text-3xl'>Грузоперевозки по странам СНГ.</h1>
