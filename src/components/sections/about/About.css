@@ -4,4 +4,6 @@
 
 .about_count {
     color: rgba(255, 255, 255, 0.18);
+    transform: scaleY(1.2); /* увеличивает высоту */
+    display: inline-block;  /* обязательно, иначе не сработает */
 }
