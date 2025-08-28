@@ -8,5 +8,11 @@ header {
 
 .heading_fon {
     color: rgba(36, 36, 36, 0.05);
-    /* transform: rotate(-15deg) */
+}
+
+@media (min-width: 320px) and (max-width: 426px) {
+  .heading_fon {
+    transform: rotate(-75deg);
+    font-size: 85px
+  }
 }

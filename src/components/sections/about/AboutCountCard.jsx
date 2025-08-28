@@ -44,11 +44,11 @@ function Counter({ target, duration = 2000 }) {
 
 export default function AboutCountCard({ topText, bottomText, target }) {
   return (
-    <div className="h-[150px] w-[405px] relative flex flex-col justify-center">
+    <div className="h-[150px] w-[305px] md:w-[405px] relative flex flex-col justify-center">
       <p className="text-amber-400 font-semibold text-[40px] leading-none">
         {topText}
       </p>
-      <p className="about_count font-black text-[203px] leading-none absolute self-center">
+      <p className="about_count font-black text-[130px] md:text-[203px] leading-none absolute self-center">
         <Counter target={target} />
       </p>
       <p className="text-amber-400 font-semibold text-[40px] leading-none text-end">

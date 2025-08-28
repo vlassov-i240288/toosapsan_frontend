@@ -16,10 +16,31 @@
   padding-left: calc(50% - 900px);
   padding-right: calc(50% - 900px);
 }
+/* 
+@media (min-width: 320px) and (max-width: 426px) {
+  .center {
+    padding-left: calc(50% - 150px);
+    padding-right: calc(50% - 150px);
+  }
+}
 
-@media (max-width: 1440px) {
+@media (min-width: 427px) and (max-width: 768px) {
+  .center {
+    padding-left: calc(50% - 200px);
+    padding-right: calc(50% - 200px);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .center {
+    padding-left: calc(50% - 500px);
+    padding-right: calc(50% - 500px);
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1440px) {
   .center {
     padding-left: calc(50% - 700px);
     padding-right: calc(50% - 700px);
   }
-}
+} */

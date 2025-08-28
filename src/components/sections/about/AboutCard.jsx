@@ -11,10 +11,10 @@ export default function AboutCard({ heading, text }) {
                 <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
 
                     {/* FRONT */}
-                    <div className="absolute inset-0 [backface-visibility:hidden]">
-                        <div className="bg-amber-400 rounded p-10 flex flex-1 flex-col h-80 justify-center">
-                            <h2 className="uppercase text-center font-bold text-[32px]">{heading}</h2>
-                            <p className="uppercase text-center font-bold text-[24px]">{text}</p>
+                    <div className="w-full h-80 cursor-pointer">
+                        <div className="bg-amber-400 rounded p-10 flex flex-col h-full justify-center">
+                            <h2 className="uppercase text-center font-bold text-[23px] md:text-[25px] lg:text-[32px]">{heading}</h2>
+                            <p className="uppercase text-center font-bold md:text-[20px] lg:text-[24px]">{text}</p>
                         </div>
                     </div>
 
