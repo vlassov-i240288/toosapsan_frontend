@@ -17,3 +17,10 @@
   padding-left: calc(50% - 900px);
   padding-right: calc(50% - 900px);
 }
+
+@media (min-width: 1440px) {
+  .center {
+    padding-left: calc(50% - 700px);
+    padding-right: calc(50% - 700px);
+  }
+}

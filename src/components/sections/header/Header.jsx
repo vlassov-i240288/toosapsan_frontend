@@ -13,10 +13,11 @@ export default function Header() {
     };
 
     return (
-        <header className="h-screen pt-[100px] flex items-center justify-center relative">
+        <header className="h-screen pt-[100px] flex flex-col items-center justify-center relative">
 
             <h1 className="heading_fon font-black text-[12vw] items-center justify-center">ГРУЗОПЕРЕВОЗКИ</h1>
-            <p className="absolute text-center text-2xl center"><span className="text-amber-400">TOO SapSan TL</span> — надежный партнер в сфере грузоперевозок. Мы обеспечиваем железнодорожные перевозки любой сложности, а также международные и внутренние автомобильные доставки.</p>
+            <p className="absolute text-center text-3xl center"><span className="text-amber-400">TOO SapSan TL</span> — надежный партнер в сфере грузоперевозок. Мы обеспечиваем железнодорожные перевозки любой сложности, а также международные и внутренние автомобильные доставки.</p>
+            <button className="uppercase rounded border bg-amber-400 text-black border-amber-400 transition duration-300 hover:brightness-90 p-3 cursor-pointer text-xl" onClick={() => setOpenModal(true)} >Рассчитать  перевозку</button>
             
             {/* <div className='flex flex-col gap-10 p-5'>
                 <div className="flex flex-col gap-10">
@@ -47,9 +48,9 @@ export default function Header() {
             </div> */}
 
             {/* модалка */}
-            {/* {openModal && (
+            {openModal && (
                 <AplicationModal onClose={() => setOpenModal(false)}/>
-            )} */}
+            )}
         </header>
     )
 }
