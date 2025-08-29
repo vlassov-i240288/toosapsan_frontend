@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import {
     HiOutlineLocationMarker,
-    HiOutlineSwitchHorizontal,
     HiOutlineCube,
     HiOutlineScale,
     HiOutlineUser,
     HiPhone
 } from "react-icons/hi";
+import { LuArrowUpDown } from "react-icons/lu";
 
 function AplicationModal({ children, onClose }) {
     const [show, setShow] = useState(false);
@@ -28,16 +28,29 @@ function AplicationModal({ children, onClose }) {
                 className={`border border-amber-400 p-5 rounded bg-[#242424] w-[90%] max-w-2xl transform transition-all duration-300 ${show ? "scale-100 opacity-100" : "scale-95 opacity-0"}`}
             >
                 <div className="flex flex-col gap-2 relative">
+                    <p className="text-white text-2xl font-bold">Вид перевозки :</p>
+                    <div className="flex gap-7">
+                        <div className="text-amber-400 flex items-center gap-2">
+                            <input type="radio" name="type_transportation" id="zhd_transportation" />
+                            <label htmlFor="zhd_transportation" name="type_transportation">Ж/Д перевозка</label>
+                        </div>
+                        <div className="text-amber-400 flex items-center gap-2">
+                            <input type="radio" name="type_transportation" id="avto_transportation" />
+                            <label htmlFor="avto_transportation" >Авто перевозка</label>
+                        </div>
+                    </div>
+
+
                     <p className="text-white text-2xl font-bold">Данные о грузе :</p>
-                    <button 
+                    <button
                         type="button"
-                        onClick={handleClose} 
-                        className="absolute right-0 text-white"
+                        onClick={handleClose}
+                        className="absolute right-0 text-white cursor-pointer"
                     >
                         ✖
                     </button>
                     {children}
-                    
+
                     <div className="flex flex-col gap-2">
                         <div className="relative">
                             <div className="absolute top-[10px] left-[10px] ">
@@ -47,7 +60,7 @@ function AplicationModal({ children, onClose }) {
                         </div>
 
                         <div className="flex w-10 h-10 cursor-pointer items-center self-center">
-                            <HiOutlineSwitchHorizontal size={25} color="oklch(76.9% 0.188 70.08)" />
+                            <LuArrowUpDown size={25} color="oklch(76.9% 0.188 70.08)" />
                         </div>
 
                         <div className="relative">

@@ -11,12 +11,18 @@ export default function AboutCard({ heading, text }) {
                 <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
 
                     {/* FRONT */}
-                    <div className="w-full h-80 cursor-pointer">
+                    <div
+                        className="w-full h-80 cursor-pointer md:[backface-visibility:hidden]"
+                        onClick={() => {
+                            if (window.innerWidth < 1024) setOpenModal(true) // работает только на мобилках
+                        }}
+                    >
                         <div className="bg-amber-400 rounded p-10 flex flex-col h-full justify-center">
                             <h2 className="uppercase text-center font-bold text-[23px] md:text-[25px] lg:text-[32px]">{heading}</h2>
                             <p className="uppercase text-center font-bold md:text-[20px] lg:text-[24px]">{text}</p>
                         </div>
                     </div>
+
 
                     {/* BACK */}
                     <div onClick={() => setOpenModal(true)} className="absolute inset-0 [transform:rotateY(180deg)] [backface-visibility:hidden]">
