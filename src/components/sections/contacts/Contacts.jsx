@@ -1,6 +1,7 @@
 import { FaWhatsapp } from "react-icons/fa";
 import { PiTelegramLogoLight } from "react-icons/pi";
 import { CiInstagram } from "react-icons/ci";
+import { FaTiktok } from "react-icons/fa";
 import "./Contacts.css"
 
 export default function Contacts() {
@@ -10,13 +11,14 @@ export default function Contacts() {
 
             <div className="center flex gap-10 items-center bg-[#242424] pb-25 flex-col md:flex-row lg:flex-row xl:flex-row">
                 <div>
-                    <a href="mailto:info@mail.ru" className="text-2xl font-bold text-[#fff]">
-                        info@mail.ru
+                    <a href="mailto:info@mail.ru" className="uppercase text-2xl font-bold text-[#fff] transition duration-300 hover:text-amber-400">
+                        написать email
                     </a>
                 </div>
                 <div className="flex gap-5 ">
                     <a
-                        href="#"
+                        href="https://www.instagram.com/sapsan.logist/?igsh=MXV1dWdydWh6bWdoYQ%3D%3D&utm_source=qr#"
+                        target="_blank"
                         className="cursor-pointer w-15 h-15 bg-red-400 flex justify-center items-center rounded-4xl 
              transition duration-300 hover:brightness-90"
                     >
@@ -24,7 +26,17 @@ export default function Contacts() {
                     </a>
 
                     <a
-                        href="#"
+                        href="https://www.tiktok.com/@filatov._.andrey"
+                        target="_blank"
+                        className="cursor-pointer w-15 h-15 bg-gray-700 flex justify-center items-center rounded-4xl 
+             transition duration-300 hover:brightness-90"
+                    >
+                        <FaTiktok className="text-3xl text-white" />
+                    </a>
+
+                    <a
+                        target="_blank"
+                        href="https://wa.me/87054103913"
                         className="cursor-pointer w-15 h-15 bg-green-400 flex justify-center items-center rounded-4xl 
              transition duration-300 hover:brightness-90"
                     >
@@ -32,7 +44,8 @@ export default function Contacts() {
                     </a>
 
                     <a
-                        href="#"
+                        target="_blank"
+                        href="https://t.me/KTZH_Logist"
                         className="cursor-pointer w-15 h-15 bg-blue-400 flex justify-center items-center rounded-4xl 
              transition duration-300 hover:brightness-90"
                     >
@@ -41,8 +54,9 @@ export default function Contacts() {
 
                 </div>
                 <div>
-                    <a href="tel:+77054103913" className="text-2xl font-bold text-[#fff]">
-                        +7 705 410 39 13
+                    <a
+                        href="tel:+77054103913" className="uppercase text-2xl font-bold text-[#fff] transition duration-300 hover:text-amber-400">
+                        позвонить
                     </a>
                 </div>
             </div>
