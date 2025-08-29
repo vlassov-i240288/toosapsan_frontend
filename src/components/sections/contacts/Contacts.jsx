@@ -36,7 +36,7 @@ export default function Contacts() {
 
                     <a
                         target="_blank"
-                        href="https://wa.me/87054103913"
+                        href="https://wa.me/+77054103913"
                         className="cursor-pointer w-15 h-15 bg-green-400 flex justify-center items-center rounded-4xl 
              transition duration-300 hover:brightness-90"
                     >
