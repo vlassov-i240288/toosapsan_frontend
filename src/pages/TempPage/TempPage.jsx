@@ -2,6 +2,7 @@ import Contacts from "../../components/sections/contacts/Contacts"
 import { Typewriter } from "react-simple-typewriter"
 import { FaTruck, FaPlane, FaTrain } from "react-icons/fa"
 import { useEffect, useMemo, useState } from "react"
+import WaveText from "../../components/waveText/WaveText"
 
 export default function TempPage() {
   const words = useMemo(
@@ -39,6 +40,7 @@ export default function TempPage() {
     <div className="h-screen bg-[#242424] flex flex-col justify-evenly">
       <div>
         <h1 className="text-white font-black text-5xl text-center flex items-center justify-center gap-3">
+          {/* <WaveText text="TOO Sapsan" />{" "} */}
           TOO Sapsan{" "}
           <span className="inline-block relative w-14 h-14 text-amber-400 text-5xl">
             {/* TL → трансформация */}
@@ -65,7 +67,7 @@ export default function TempPage() {
           </span>
         </h1>
 
-        <h2 className="text-white font-black text-4xl text-center">грузоперевозки</h2>
+        <h2 className="text-white font-black text-3xl text-center"><WaveText text="грузоперевозки" /></h2>
 
         <h3 className="text-amber-400 text-center text-2xl">
           <Typewriter
