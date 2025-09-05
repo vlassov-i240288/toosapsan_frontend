@@ -26,7 +26,7 @@ export default function WaveText({ text = "TOO Sapsan" }) {
 
   return (
     <motion.h1
-      className="text-white font-black text-5xl text-center flex justify-center gap-1"
+      className="text-white font-black text-center flex justify-center gap-1"
       variants={container}
       initial="hidden"
       animate="visible"
