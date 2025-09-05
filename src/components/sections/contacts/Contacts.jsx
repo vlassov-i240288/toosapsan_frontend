@@ -6,9 +6,7 @@ import "./Contacts.css"
 
 export default function Contacts() {
     return (
-        <section className="flex flex-col contacts">
-
-
+        <section className="flex flex-col contacts items-center bg-[#242424]">
             <div className="center flex gap-10 items-center bg-[#242424] pb-25 flex-col md:flex-row lg:flex-row xl:flex-row">
                 <div>
                     <a href="mailto:info@mail.ru" className="uppercase text-2xl font-bold text-[#fff] transition duration-300 hover:text-amber-400">
