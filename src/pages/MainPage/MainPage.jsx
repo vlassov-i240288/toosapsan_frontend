@@ -9,11 +9,11 @@ export default function MainPage() {
     return (
         <>
             {/* <MainMenu /> */}
-            {/* <Header />
+            <Header />
             <About />
-            <Contacts /> */}
+            <Contacts />
 
-            <TempPage />
+            {/* <TempPage /> */}
         </>
     )
 }
