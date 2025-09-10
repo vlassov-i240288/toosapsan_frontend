@@ -1,0 +1,45 @@
+.ant-select {
+  width: 100%;
+  height: 48px;
+  color: black !important;
+}
+
+.ant-select::placeholder {
+  color: black !important;
+}
+
+.ant-select-selector {
+  padding-left: 38px !important;
+  background-color: #fffbeb !important;
+  font-size: 16px !important;
+}
+
+.ant-radio-button-wrapper {
+  background-color: #fffbeb !important;
+  border-color: #fffbeb !important;
+}
+
+.ant-radio-button-wrapper:hover {
+  color: #ffb900;
+}
+
+.ant-radio-button-wrapper-checked {
+  background-color: #ffb900 !important;
+  border-color: #ffb900 !important;
+}
+
+.ant-input-number {
+  width: 100%;
+  background-color: #fffbeb !important;
+}
+
+.ant-input-number-input {
+  font-family: "Roboto Condensed", sans-serif !important;
+}
+
+.ant-input-number-input-wrap {
+  display: flex;
+  height: 48px;
+  font-size: 16px;
+  padding-left: 28px !important;
+}

@@ -11,7 +11,7 @@ function App() {
 
 export default App
 
-// import CitiesList from "./api/requests/CitiesList";
+// import CitiesList from "./api/requests/FetchCities";
 
 // function App() {
 //   return (
