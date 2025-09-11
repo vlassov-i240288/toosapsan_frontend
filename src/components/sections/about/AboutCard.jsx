@@ -1,10 +1,4 @@
-import { useState } from "react";
-import AplicationModal from "../../modals/ApplicationModal";
-
-export default function AboutCard({ heading, text }) {
-    const [openModal, setOpenModal] = useState(false);
-
-
+export default function AboutCard({ heading, text, onOpenModal }) {
     return (
         <>
             <div className="group [perspective:1000px] w-full h-80 flex-1 cursor-pointer">
@@ -14,7 +8,7 @@ export default function AboutCard({ heading, text }) {
                     <div
                         className="w-full h-80 cursor-pointer md:[backface-visibility:hidden]"
                         onClick={() => {
-                            if (window.innerWidth < 1024) setOpenModal(true) // работает только на мобилках
+                            if (window.innerWidth < 1024) onOpenModal(); // только на мобилках
                         }}
                     >
                         <div className="bg-amber-400 rounded p-10 flex flex-col h-full justify-center">
@@ -23,20 +17,17 @@ export default function AboutCard({ heading, text }) {
                         </div>
                     </div>
 
-
                     {/* BACK */}
-                    <div onClick={() => setOpenModal(true)} className="absolute inset-0 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                    <div
+                        onClick={onOpenModal}
+                        className="absolute inset-0 [transform:rotateY(180deg)] [backface-visibility:hidden]"
+                    >
                         <div className="bg-black rounded p-10 flex flex-col h-80 justify-center items-center">
                             <p className="text-amber-400 text-4xl">ЗАКАЗАТЬ УСЛУГУ</p>
                         </div>
                     </div>
-
                 </div>
             </div>
-
-            {openModal && (
-                <AplicationModal onClose={() => setOpenModal(false)} />
-            )}
         </>
     );
 }

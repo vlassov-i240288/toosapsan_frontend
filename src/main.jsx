@@ -9,6 +9,6 @@ createRoot(document.getElementById('root')).render(
   <ConfigProvider locale={ruRU}>
     <StrictMode>
       <App />
-    </StrictMode>,
+    </StrictMode>
   </ConfigProvider>
 )
