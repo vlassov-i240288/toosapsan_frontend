@@ -6,12 +6,12 @@ import {
     HiOutlineUser,
     HiPhone
 } from "react-icons/hi";
+import { MdDriveFileRenameOutline } from "react-icons/md";
 import { fetchCities } from "../../api/requests/FetchCities";
 import { fetchStations } from "../../api/requests/FetchStations";
+import { sendZhdTransportation } from "../../api/sending/SendZhdTransportation";
 import { Select, Flex, Radio, InputNumber } from "antd";
 import './ApplicationModal.css';
-import { MdDriveFileRenameOutline } from "react-icons/md";
-import { sendZhdTransportation } from "../../api/sending/SendZhdTransportation";
 
 const options = [
     { label: 'Ж/Д перевозка', value: 'zhd_transportation' },
@@ -33,6 +33,9 @@ function ApplicationModal({ children, onClose, messageApi }) {
     const [cargoName, setCargoName] = useState("");
     const [name, setName] = useState("");
     const [telephone, setTelephone] = useState("");
+
+    // ошибки
+    const [errors, setErrors] = useState({});
 
     useEffect(() => {
         setTimeout(() => setShow(true), 10);
@@ -65,12 +68,12 @@ function ApplicationModal({ children, onClose, messageApi }) {
         setTo(null);
     }, [transportType]);
 
-    // отправка формы
+    // уведомления
     const success = () => {
         setTimeout(() => {
             messageApi.open({
                 type: 'success',
-                content: 'Заявка успешно отправлена',
+                content: 'Заявка успешно отправлена. Менеджер Вам уже звонит!',
                 duration: 5
             });
         }, 300);
@@ -86,8 +89,30 @@ function ApplicationModal({ children, onClose, messageApi }) {
         }, 300);
     };
 
+    // валидация
+    const validate = () => {
+        let newErrors = {};
+        if (!from) newErrors.from = "Укажите пункт отправления";
+        if (!to) newErrors.to = "Укажите пункт прибытия";
+
+        // проверка совпадения
+        if (from && to && from === to) {
+            newErrors.to = "Пункт отправления и прибытия не могут совпадать";
+        }
+
+        if (!volume) newErrors.volume = "Укажите объём";
+        if (!weight) newErrors.weight = "Укажите вес";
+        if (!cargoName.trim()) newErrors.cargoName = "Введите название груза";
+        if (!name.trim()) newErrors.name = "Введите ваше имя";
+        if (!telephone.trim()) newErrors.telephone = "Введите телефон";
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!validate()) return;
 
         const payload = {
             type_transportation: transportType,
@@ -99,8 +124,6 @@ function ApplicationModal({ children, onClose, messageApi }) {
             name,
             telephone,
         };
-
-        console.log("Отправляем payload:", payload);
 
         try {
             const data = await sendZhdTransportation(payload);
@@ -158,11 +181,15 @@ function ApplicationModal({ children, onClose, messageApi }) {
                                 }
                                 options={locations.map(item => ({
                                     value: item.id,
-                                    label: item.name
+                                    label: transportType === "zhd_transportation"
+                                        ? `${item.code}  ${item.name}` // если жд, то показываем код и название
+                                        : item.name
                                 }))}
                                 value={from}
                                 onChange={setFrom}
                             />
+
+                            {errors.from && <p className="text-red-400 text-sm">{errors.from}</p>}
                         </div>
 
                         {/* Куда */}
@@ -179,11 +206,15 @@ function ApplicationModal({ children, onClose, messageApi }) {
                                 }
                                 options={locations.map(item => ({
                                     value: item.id,
-                                    label: item.name
+                                    label: transportType === "zhd_transportation"
+                                        ? `${item.code}  ${item.name}` // если жд, то показываем код и название
+                                        : item.name
                                 }))}
                                 value={to}
                                 onChange={setTo}
+                                status={errors.to ? "error" : ""}
                             />
+                            {errors.to && <p className="text-red-400 text-sm">{errors.to}</p>}
                         </div>
                     </div>
 
@@ -198,7 +229,9 @@ function ApplicationModal({ children, onClose, messageApi }) {
                                 value={volume}
                                 onChange={setVolume}
                                 className="w-full"
+                                status={errors.volume ? "error" : ""}
                             />
+                            {errors.volume && <p className="text-red-400 text-sm">{errors.volume}</p>}
                         </div>
 
                         <div className="relative">
@@ -211,7 +244,9 @@ function ApplicationModal({ children, onClose, messageApi }) {
                                 value={weight}
                                 onChange={setWeight}
                                 className="w-full"
+                                status={errors.weight ? "error" : ""}
                             />
+                            {errors.weight && <p className="text-red-400 text-sm">{errors.weight}</p>}
                         </div>
 
                         <div className="relative">
@@ -219,12 +254,13 @@ function ApplicationModal({ children, onClose, messageApi }) {
                                 <MdDriveFileRenameOutline size={25} color="oklch(76.9% 0.188 70.08)" />
                             </div>
                             <input
-                                className="bg-amber-50 p-3 ps-10 w-full rounded text-gray-800 outline-none"
+                                className={`bg-amber-50 p-3 ps-10 w-full rounded text-gray-800 outline-none ${errors.cargoName ? "border border-red-400" : ""}`}
                                 type="text"
                                 placeholder="Наименование груза"
                                 value={cargoName}
                                 onChange={(e) => setCargoName(e.target.value)}
                             />
+                            {errors.cargoName && <p className="text-red-400 text-sm">{errors.cargoName}</p>}
                         </div>
                     </div>
 
@@ -235,12 +271,13 @@ function ApplicationModal({ children, onClose, messageApi }) {
                                 <HiOutlineUser size={25} color="oklch(76.9% 0.188 70.08)" />
                             </div>
                             <input
-                                className="bg-white p-3 ps-10 w-full rounded text-gray-800 outline-none"
+                                className={`bg-white p-3 ps-10 w-full rounded text-gray-800 outline-none ${errors.name ? "border border-red-400" : ""}`}
                                 type="text"
                                 placeholder="Имя"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                             />
+                            {errors.name && <p className="text-red-400 text-sm">{errors.name}</p>}
                         </div>
 
                         <div className="relative">
@@ -248,12 +285,13 @@ function ApplicationModal({ children, onClose, messageApi }) {
                                 <HiPhone size={25} color="oklch(76.9% 0.188 70.08)" />
                             </div>
                             <input
-                                className="bg-white p-3 ps-10 w-full rounded text-gray-800 outline-none"
+                                className={`bg-white p-3 ps-10 w-full rounded text-gray-800 outline-none ${errors.telephone ? "border border-red-400" : ""}`}
                                 type="text"
                                 placeholder="Номер телефона"
                                 value={telephone}
                                 onChange={(e) => setTelephone(e.target.value)}
                             />
+                            {errors.telephone && <p className="text-red-400 text-sm">{errors.telephone}</p>}
                         </div>
                     </div>
 
