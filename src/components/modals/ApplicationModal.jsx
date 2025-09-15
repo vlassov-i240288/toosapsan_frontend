@@ -10,8 +10,12 @@ import { MdDriveFileRenameOutline } from "react-icons/md";
 import { fetchCities } from "../../api/requests/FetchCities";
 import { fetchStations } from "../../api/requests/FetchStations";
 import { sendZhdTransportation } from "../../api/sending/SendZhdTransportation";
+import { sendAutoTransportation } from "../../api/sending/SendAutoTransportation";
 import { Select, Flex, Radio, InputNumber } from "antd";
 import './ApplicationModal.css';
+import { FiTruck } from "react-icons/fi";
+import { AiOutlineSchedule } from "react-icons/ai";
+import { fetchTypeTransport } from "../../api/requests/FetchTypeTransport";
 
 const options = [
     { label: 'Ж/Д перевозка', value: 'zhd_transportation' },
@@ -33,6 +37,8 @@ function ApplicationModal({ children, onClose, messageApi }) {
     const [cargoName, setCargoName] = useState("");
     const [name, setName] = useState("");
     const [telephone, setTelephone] = useState("");
+    const [numberCars, setNumberCars] = useState(null);
+    const [selectedTransport, setSelectedTransport] = useState(null);
 
     // ошибки
     const [errors, setErrors] = useState({});
@@ -100,6 +106,11 @@ function ApplicationModal({ children, onClose, messageApi }) {
             newErrors.to = "Пункт отправления и прибытия не могут совпадать";
         }
 
+        if (transportType === "avto_transportation") {
+            if (!selectedTransport) newErrors.selectedTransport = "Выберите тип транспорта";
+            if (!numberCars) newErrors.numberCars = "Укажите количество машин";
+        }
+
         if (!volume) newErrors.volume = "Укажите объём";
         if (!weight) newErrors.weight = "Укажите вес";
         if (!cargoName.trim()) newErrors.cargoName = "Введите название груза";
@@ -118,6 +129,8 @@ function ApplicationModal({ children, onClose, messageApi }) {
             type_transportation: transportType,
             departure: from,
             arrival: to,
+            type_transport: selectedTransport,
+            number_cars: numberCars,
             volume,
             weight,
             name_cargo: cargoName,
@@ -126,9 +139,14 @@ function ApplicationModal({ children, onClose, messageApi }) {
         };
 
         try {
-            const data = await sendZhdTransportation(payload);
-            console.log("Успешно:", data);
+            let data;
+            if (transportType === "avto_transportation") {
+                data = await sendAutoTransportation(payload);
+            } else {
+                data = await sendZhdTransportation(payload);
+            }
 
+            console.log("Успешно:", data);
             success();
             handleClose();
         } catch (err) {
@@ -136,6 +154,20 @@ function ApplicationModal({ children, onClose, messageApi }) {
             error();
         }
     };
+
+    const [typeTransportList, setTypeTransportList] = useState([]);
+
+    useEffect(() => {
+        const loadData = async () => {
+            try {
+                const typeTransportList = await fetchTypeTransport();
+                setTypeTransportList(typeTransportList);
+            } catch (e) {
+                setLocations([]);
+            }
+        };
+        loadData();
+    }, []);
 
     return (
         <div className={`fixed inset-0 flex items-center justify-center z-50 transition-opacity duration-300 ${show ? "bg-[#242424]/80 opacity-100" : "opacity-0"}`}>
@@ -150,7 +182,19 @@ function ApplicationModal({ children, onClose, messageApi }) {
                             block
                             options={options}
                             value={transportType}
-                            onChange={(e) => setTransportType(e.target.value)}
+                            onChange={(e) => {
+                                setTransportType(e.target.value);
+                                setFrom(null);
+                                setTo(null);
+                                setSelectedTransport(null);
+                                setNumberCars(null);
+                                setVolume(null);
+                                setWeight(null);
+                                setCargoName("");
+                                setName("");
+                                setTelephone("");
+                                setErrors({});
+                            }}
                             optionType="button"
                             buttonStyle="solid"
                         />
@@ -182,13 +226,12 @@ function ApplicationModal({ children, onClose, messageApi }) {
                                 options={locations.map(item => ({
                                     value: item.id,
                                     label: transportType === "zhd_transportation"
-                                        ? `${item.code}  ${item.name}` // если жд, то показываем код и название
+                                        ? `${item.code}  ${item.name}`
                                         : item.name
                                 }))}
                                 value={from}
                                 onChange={setFrom}
                             />
-
                             {errors.from && <p className="text-red-400 text-sm">{errors.from}</p>}
                         </div>
 
@@ -207,7 +250,7 @@ function ApplicationModal({ children, onClose, messageApi }) {
                                 options={locations.map(item => ({
                                     value: item.id,
                                     label: transportType === "zhd_transportation"
-                                        ? `${item.code}  ${item.name}` // если жд, то показываем код и название
+                                        ? `${item.code}  ${item.name}`
                                         : item.name
                                 }))}
                                 value={to}
@@ -219,6 +262,51 @@ function ApplicationModal({ children, onClose, messageApi }) {
                     </div>
 
                     <div className="flex flex-col gap-2">
+                        {/* Тип транспорта и количество машин только для авто */}
+                        {transportType === "avto_transportation" && (
+                            <>
+                                {/* Тип транспорта */}
+                                <div className="relative">
+                                    <div className="absolute top-[10px] left-[10px] z-10">
+                                        <FiTruck size={25} color="oklch(76.9% 0.188 70.08)" />
+                                    </div>
+                                    <Select
+                                        showSearch
+                                        placeholder="Тип транспорта"
+                                        optionFilterProp="label"
+                                        filterSort={(a, b) =>
+                                            (a?.label ?? '').toLowerCase().localeCompare((b?.label ?? '').toLowerCase(), 'ru')
+                                        }
+                                        options={typeTransportList.map(item => ({
+                                            value: item.id,
+                                            label: item.name
+                                        }))}
+                                        value={selectedTransport}
+                                        onChange={setSelectedTransport}
+                                        status={errors.selectedTransport ? "error" : ""}
+                                    />
+                                    {errors.selectedTransport && <p className="text-red-400 text-sm">{errors.selectedTransport}</p>}
+                                </div>
+
+                                {/* Количество машин */}
+                                <div className="relative">
+                                    <div className="absolute top-[10px] left-[10px] z-10">
+                                        <AiOutlineSchedule size={25} color="oklch(76.9% 0.188 70.08)" />
+                                    </div>
+                                    <InputNumber
+                                        min={1}
+                                        placeholder="Количество машин"
+                                        value={numberCars}
+                                        onChange={setNumberCars}
+                                        className="w-full"
+                                        status={errors.numberCars ? "error" : ""}
+                                    />
+                                    {errors.numberCars && <p className="text-red-400 text-sm">{errors.numberCars}</p>}
+                                </div>
+                            </>
+                        )}
+
+                        {/* Объём */}
                         <div className="relative">
                             <div className="absolute top-[10px] left-[10px] z-10">
                                 <HiOutlineCube size={25} color="oklch(76.9% 0.188 70.08)" />
@@ -234,6 +322,7 @@ function ApplicationModal({ children, onClose, messageApi }) {
                             {errors.volume && <p className="text-red-400 text-sm">{errors.volume}</p>}
                         </div>
 
+                        {/* Вес */}
                         <div className="relative">
                             <div className="absolute top-[10px] left-[10px] z-10">
                                 <HiOutlineScale size={25} color="oklch(76.9% 0.188 70.08)" />
@@ -249,6 +338,7 @@ function ApplicationModal({ children, onClose, messageApi }) {
                             {errors.weight && <p className="text-red-400 text-sm">{errors.weight}</p>}
                         </div>
 
+                        {/* Наименование груза */}
                         <div className="relative">
                             <div className="absolute top-[10px] left-[10px]">
                                 <MdDriveFileRenameOutline size={25} color="oklch(76.9% 0.188 70.08)" />
