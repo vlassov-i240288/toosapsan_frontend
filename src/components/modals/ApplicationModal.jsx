@@ -16,6 +16,7 @@ import './ApplicationModal.css';
 import { FiTruck } from "react-icons/fi";
 import { AiOutlineSchedule } from "react-icons/ai";
 import { fetchTypeTransport } from "../../api/requests/FetchTypeTransport";
+import { IMaskInput } from "react-imask";
 
 const options = [
     { label: 'Ж/Д перевозка', value: 'zhd_transportation' },
@@ -370,16 +371,18 @@ function ApplicationModal({ children, onClose, messageApi }) {
                             {errors.name && <p className="text-red-400 text-sm">{errors.name}</p>}
                         </div>
 
+                        {/* Телефон с маской */}
                         <div className="relative">
                             <div className="absolute top-[10px] left-[10px]">
                                 <HiPhone size={25} color="oklch(76.9% 0.188 70.08)" />
                             </div>
-                            <input
-                                className={`bg-white p-3 ps-10 w-full rounded text-gray-800 outline-none ${errors.telephone ? "border border-red-400" : ""}`}
-                                type="text"
-                                placeholder="Номер телефона"
+                            <IMaskInput
+                                mask="+7 000 000 00 00"
                                 value={telephone}
-                                onChange={(e) => setTelephone(e.target.value)}
+                                unmask={false}
+                                onAccept={(value) => setTelephone(value)}
+                                placeholder="+7 123 123 12 12"
+                                className={`bg-white p-3 ps-10 w-full rounded text-gray-800 outline-none ${errors.telephone ? "border border-red-400" : ""}`}
                             />
                             {errors.telephone && <p className="text-red-400 text-sm">{errors.telephone}</p>}
                         </div>
