@@ -11,7 +11,7 @@ import { fetchCities } from "../../api/requests/FetchCities";
 import { fetchStations } from "../../api/requests/FetchStations";
 import { sendZhdTransportation } from "../../api/sending/SendZhdTransportation";
 import { sendAutoTransportation } from "../../api/sending/SendAutoTransportation";
-import { Select, Flex, Radio, InputNumber } from "antd";
+import { Select, Flex, Radio, InputNumber, Spin } from "antd";
 import './ApplicationModal.css';
 import { FiTruck } from "react-icons/fi";
 import { AiOutlineSchedule } from "react-icons/ai";
@@ -43,6 +43,8 @@ function ApplicationModal({ children, onClose, messageApi }) {
 
     // ошибки
     const [errors, setErrors] = useState({});
+    // загрузка отправки
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         setTimeout(() => setShow(true), 10);
@@ -51,6 +53,17 @@ function ApplicationModal({ children, onClose, messageApi }) {
     const handleClose = () => {
         setShow(false);
         setTimeout(() => onClose(), 300);
+    };
+
+    // очистка ошибок для поля
+    const clearError = (field) => {
+        if (errors[field]) {
+            setErrors((prev) => {
+                const newErrors = { ...prev };
+                delete newErrors[field];
+                return newErrors;
+            });
+        }
     };
 
     // Подгружаем города/станции
@@ -116,7 +129,11 @@ function ApplicationModal({ children, onClose, messageApi }) {
         if (!weight) newErrors.weight = "Укажите вес";
         if (!cargoName.trim()) newErrors.cargoName = "Введите название груза";
         if (!name.trim()) newErrors.name = "Введите ваше имя";
-        if (!telephone.trim()) newErrors.telephone = "Введите телефон";
+        if (!telephone.trim()) {
+            newErrors.telephone = "Введите телефон";
+        } else if (telephone.replace(/\D/g, "").length < 11) {
+            newErrors.telephone = "Телефон должен содержать минимум 11 цифр";
+        }
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -140,6 +157,7 @@ function ApplicationModal({ children, onClose, messageApi }) {
         };
 
         try {
+            setLoading(true);
             let data;
             if (transportType === "avto_transportation") {
                 data = await sendAutoTransportation(payload);
@@ -153,6 +171,8 @@ function ApplicationModal({ children, onClose, messageApi }) {
         } catch (err) {
             console.error("Ошибка:", err);
             error();
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -231,7 +251,10 @@ function ApplicationModal({ children, onClose, messageApi }) {
                                         : item.name
                                 }))}
                                 value={from}
-                                onChange={setFrom}
+                                onChange={(value) => {
+                                    setFrom(value);
+                                    clearError("from");
+                                }}
                             />
                             {errors.from && <p className="text-red-400 text-sm">{errors.from}</p>}
                         </div>
@@ -255,7 +278,10 @@ function ApplicationModal({ children, onClose, messageApi }) {
                                         : item.name
                                 }))}
                                 value={to}
-                                onChange={setTo}
+                                onChange={(value) => {
+                                    setTo(value);
+                                    clearError("to");
+                                }}
                                 status={errors.to ? "error" : ""}
                             />
                             {errors.to && <p className="text-red-400 text-sm">{errors.to}</p>}
@@ -283,7 +309,10 @@ function ApplicationModal({ children, onClose, messageApi }) {
                                             label: item.name
                                         }))}
                                         value={selectedTransport}
-                                        onChange={setSelectedTransport}
+                                        onChange={(value) => {
+                                            setSelectedTransport(value);
+                                            clearError("selectedTransport");
+                                        }}
                                         status={errors.selectedTransport ? "error" : ""}
                                     />
                                     {errors.selectedTransport && <p className="text-red-400 text-sm">{errors.selectedTransport}</p>}
@@ -298,7 +327,10 @@ function ApplicationModal({ children, onClose, messageApi }) {
                                         min={1}
                                         placeholder="Количество машин"
                                         value={numberCars}
-                                        onChange={setNumberCars}
+                                        onChange={(value) => {
+                                            setNumberCars(value);
+                                            clearError("numberCars");
+                                        }}
                                         className="w-full"
                                         status={errors.numberCars ? "error" : ""}
                                     />
@@ -316,7 +348,10 @@ function ApplicationModal({ children, onClose, messageApi }) {
                                 min={1}
                                 placeholder="Объём"
                                 value={volume}
-                                onChange={setVolume}
+                                onChange={(value) => {
+                                    setVolume(value);
+                                    clearError("volume");
+                                }}
                                 className="w-full"
                                 status={errors.volume ? "error" : ""}
                             />
@@ -332,7 +367,10 @@ function ApplicationModal({ children, onClose, messageApi }) {
                                 min={1}
                                 placeholder="Вес"
                                 value={weight}
-                                onChange={setWeight}
+                                onChange={(value) => {
+                                    setWeight(value);
+                                    clearError("weight");
+                                }}
                                 className="w-full"
                                 status={errors.weight ? "error" : ""}
                             />
@@ -349,7 +387,10 @@ function ApplicationModal({ children, onClose, messageApi }) {
                                 type="text"
                                 placeholder="Наименование груза"
                                 value={cargoName}
-                                onChange={(e) => setCargoName(e.target.value)}
+                                onChange={(e) => {
+                                    setCargoName(e.target.value);
+                                    clearError("cargoName");
+                                }}
                             />
                             {errors.cargoName && <p className="text-red-400 text-sm">{errors.cargoName}</p>}
                         </div>
@@ -366,7 +407,10 @@ function ApplicationModal({ children, onClose, messageApi }) {
                                 type="text"
                                 placeholder="Имя"
                                 value={name}
-                                onChange={(e) => setName(e.target.value)}
+                                onChange={(e) => {
+                                    setName(e.target.value);
+                                    clearError("name");
+                                }}
                             />
                             {errors.name && <p className="text-red-400 text-sm">{errors.name}</p>}
                         </div>
@@ -380,8 +424,11 @@ function ApplicationModal({ children, onClose, messageApi }) {
                                 mask="+7 000 000 00 00"
                                 value={telephone}
                                 unmask={false}
-                                onAccept={(value) => setTelephone(value)}
-                                placeholder="+7 123 123 12 12"
+                                onAccept={(value) => {
+                                    setTelephone(value);
+                                    clearError("telephone");
+                                }}
+                                placeholder="+7 000 000 00 00"
                                 className={`bg-white p-3 ps-10 w-full rounded text-gray-800 outline-none ${errors.telephone ? "border border-red-400" : ""}`}
                             />
                             {errors.telephone && <p className="text-red-400 text-sm">{errors.telephone}</p>}
@@ -390,9 +437,12 @@ function ApplicationModal({ children, onClose, messageApi }) {
 
                     <button
                         type="submit"
-                        className="bg-amber-400 rounded p-3 cursor-pointer hover:bg-amber-500 transition-colors duration-300 text-gray-800"
+                        disabled={loading}
+                        className={`flex gap-2 items-center justify-center rounded p-3 cursor-pointer transition-colors duration-300 text-gray-800 
+                        ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-amber-400 hover:bg-amber-500"}`}
                     >
-                        Рассчитать стоимость
+                        {loading ? <Spin className="custom-spinner" /> : null}
+                        {loading ? "Отправка..." : "Рассчитать стоимость"}
                     </button>
                 </div>
             </form>
