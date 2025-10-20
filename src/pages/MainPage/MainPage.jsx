@@ -16,7 +16,7 @@ export default function MainPage() {
             {/* Контекст сообщений обязательно здесь */}
             {contextHolder}
 
-            {/* <MainMenu /> */}
+            <MainMenu />
             <Header onOpenModal={() => setIsModalOpen(true)} />
             <About onOpenModal={() => setIsModalOpen(true)} />
             <Contacts />

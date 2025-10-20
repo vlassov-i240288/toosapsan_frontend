@@ -12,7 +12,8 @@ header {
 
 @media (min-width: 320px) and (max-width: 426px) {
   .heading_fon {
-    transform: rotate(-75deg);
-    font-size: 85px
+    /* transform: rotate(-75deg);
+    font-size: 85px */
+    display: none;
   }
 }

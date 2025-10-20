@@ -19,8 +19,8 @@
 
 @media (min-width: 320px) and (max-width: 426px) {
   .center {
-    padding-left: calc(50% - 150px);
-    padding-right: calc(50% - 150px);
+    padding-left: calc(50% - 165px);
+    padding-right: calc(50% - 165px);
   }
 }
 
