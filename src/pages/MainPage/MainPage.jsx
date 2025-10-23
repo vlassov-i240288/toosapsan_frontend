@@ -6,6 +6,7 @@ import Header from "../../components/sections/header/Header";
 import About from "../../components/sections/about/About";
 import Contacts from "../../components/sections/contacts/Contacts";
 import ApplicationModal from "../../components/modals/ApplicationModal";
+import WhyUs from "../../components/sections/whyUs/WhyUs";
 
 export default function MainPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,6 +19,7 @@ export default function MainPage() {
 
             <MainMenu />
             <Header onOpenModal={() => setIsModalOpen(true)} />
+            <WhyUs />
             <About onOpenModal={() => setIsModalOpen(true)} />
             <Contacts />
 

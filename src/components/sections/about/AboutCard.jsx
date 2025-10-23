@@ -1,19 +1,19 @@
 export default function AboutCard({ heading, text, onOpenModal }) {
     return (
         <>
-            <div className="group [perspective:1000px] w-full h-80 flex-1 cursor-pointer">
+            <div className="group [perspective:1000px] w-full flex-1 cursor-pointer">
                 <div className="relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
 
                     {/* FRONT */}
                     <div
-                        className="w-full h-80 cursor-pointer md:[backface-visibility:hidden]"
+                        className="w-40 h-40 cursor-pointer md:[backface-visibility:hidden]"
                         onClick={() => {
                             if (window.innerWidth < 1024) onOpenModal(); // только на мобилках
                         }}
                     >
-                        <div className="bg-amber-400 rounded p-10 flex flex-col h-full justify-center">
-                            <h2 className="uppercase text-center font-bold text-[23px] md:text-[25px] lg:text-[32px]">{heading}</h2>
-                            <p className="uppercase text-center font-bold md:text-[20px] lg:text-[24px]">{text}</p>
+                        <div className="bg-amber-400 rounded p-3 flex flex-col h-full justify-center">
+                            <h2 className="uppercase text-center md:text-[25px] lg:text-[32px]">{heading}</h2>
+                            {/* <p className="uppercase text-center font-bold md:text-[20px] lg:text-[24px]">{text}</p> */}
                         </div>
                     </div>
 
