@@ -1,4 +1,4 @@
-export default function AboutCard({ heading, text, onOpenModal }) {
+export default function AboutCard({ heading, text, onOpenModal, count }) {
     return (
         <>
             <div className="group [perspective:1000px] w-full flex-1 cursor-pointer">
@@ -14,6 +14,7 @@ export default function AboutCard({ heading, text, onOpenModal }) {
                         <div className="bg-amber-400 rounded p-3 flex flex-col h-full justify-center">
                             <h2 className="uppercase text-center md:text-[25px] lg:text-[32px]">{heading}</h2>
                             {/* <p className="uppercase text-center font-bold md:text-[20px] lg:text-[24px]">{text}</p> */}
+                            <p className="absolute text-9xl opacity-10 font-black">{count}</p>
                         </div>
                     </div>
 

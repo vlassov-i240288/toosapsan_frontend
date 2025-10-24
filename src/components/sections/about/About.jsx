@@ -24,11 +24,13 @@ export default function About({ onOpenModal }) {   // <- принимаем пр
                                 heading="Проектные перевозки"
                                 // text="доставка грузов между городами и регионами."
                                 onOpenModal={onOpenModal}    // <-- сюда проброс
+                                count = "1"
                             />
                             <AboutCard
-                                heading="Железнодорожные перевозки"
+                                heading="Железно - дорожные перевозки"
                                 // text="консолидация небольших партий в один вагон/контейнер."
                                 onOpenModal={onOpenModal}
+                                count = "2"
                             />
                         </div>
 
@@ -37,11 +39,13 @@ export default function About({ onOpenModal }) {   // <- принимаем пр
                                 heading="Автомобильные перевозки"
                                 // text="доставка грузов из Китая в Европу и обратно."
                                 onOpenModal={onOpenModal}
+                                count = "3"
                             />
                             <AboutCard
                                 heading="Авиа перевозки"
                                 // text="использование крытых, полувагонов, платформ и др."
                                 onOpenModal={onOpenModal}
+                                count = "4"
                             />
                         </div>
 
@@ -50,11 +54,13 @@ export default function About({ onOpenModal }) {   // <- принимаем пр
                                 heading="Транзитные пеервозки"
                                 // text="доставка грузов из Китая в Европу и обратно."
                                 onOpenModal={onOpenModal}
+                                count = "5"
                             />
                             <AboutCard
                                 heading="Контейнерные перевозки"
                                 // text="использование крытых, полувагонов, платформ и др."
                                 onOpenModal={onOpenModal}
+                                count = "6"
                             />
                         </div>
                     </div>
