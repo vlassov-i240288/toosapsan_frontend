@@ -2,6 +2,15 @@ import { useState, useEffect, useRef } from "react";
 import logo from "../../assets/images/logo.png";
 import { BiNotepad, BiLayer, BiIdCard } from "react-icons/bi";
 import { gsap } from "gsap";
+import { Link } from "react-router-dom";
+import { FaListCheck } from "react-icons/fa6";
+import { IoEarthOutline } from "react-icons/io5";
+import { FaUsers } from "react-icons/fa";
+import { PiUsersThreeLight } from "react-icons/pi";
+
+
+
+
 
 export default function MainMenu() {
     const [open, setOpen] = useState(false);
@@ -43,12 +52,12 @@ export default function MainMenu() {
         <>
             <nav className="center fixed top-0 left-0 w-full flex justify-between h-[80px] items-center shadow bg-white text-black z-50">
                 <div className="">
-                    <a className="relative" href="">
+                    <Link className="relative" to="/">
                         <img className="w-30" src={logo} alt="logo" />
                         <span className="absolute italic font-bold w-[130px] top-[6px] left-[18px] text-[20px]">
                             TOO SAPSAN TL
                         </span>
-                    </a>
+                    </Link>
                 </div>
 
                 <div className="">
@@ -74,26 +83,26 @@ export default function MainMenu() {
                     {/* Десктоп меню */}
                     <ul className="hidden md:flex gap-10">
                         <li>
-                            <a className="flex items-center gap-1 font-bold text-[17px]" href="">
+                            <Link className="flex items-center gap-1 font-bold text-[17px]" to="/about">
                                 <BiNotepad />
                                 О компании
-                            </a>
+                            </Link>
                         </li>
                         <li>
                             <a className="flex items-center gap-1 font-bold text-[17px]" href="">
-                                <BiLayer />
+                                <FaListCheck />
                                 Услуги
                             </a>
                         </li>
                         <li>
                             <a className="flex items-center gap-1 font-bold text-[17px]" href="">
-                                <BiLayer />
+                                <IoEarthOutline />
                                 География
                             </a>
                         </li>
                         <li>
                             <a className="flex items-center gap-1 font-bold text-[17px]" href="">
-                                <BiLayer />
+                                <PiUsersThreeLight />
                                 Клиентам
                             </a>
                         </li>
@@ -122,26 +131,26 @@ export default function MainMenu() {
             >
                 <ul className="flex flex-col gap-7 p-6 text-xl">
                     <li>
-                        <a className="flex items-center gap-3" href="">
+                        <Link className="flex items-center gap-3" to="/about">
                             <BiNotepad />
                             О компании
-                        </a>
+                        </Link>
                     </li>
                     <li>
                         <a className="flex items-center gap-3" href="">
-                            <BiLayer />
+                            <FaListCheck  />
                             Услуги
                         </a>
                     </li>
                     <li>
                         <a className="flex items-center gap-3" href="">
-                            <BiLayer />
+                            <IoEarthOutline />
                             География
                         </a>
                     </li>
                     <li>
                         <a className="flex items-center gap-3" href="">
-                            <BiLayer />
+                            <PiUsersThreeLight  />
                             Клиентам
                         </a>
                     </li>

@@ -121,12 +121,12 @@ export default function Contacts() {
             </div>
 
             <div>
-                <script
-                    type="text/javascript"
-                    charSet="utf-8"
-                    async
-                    src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ad4e2611309451076324e730a7ac84643c5330214c9208ebe21c5c840284bfa45&amp;width=100%25&amp;height=720&amp;lang=en_FR&amp;scroll=true"
-                ></script>
+                <iframe
+                    src="https://yandex.ru/map-widget/v1/?um=constructor%3Ad4e2611309451076324e730a7ac84643c5330214c9208ebe21c5c840284bfa45&amp;source=constructor"
+                    width="100%"
+                    height="720"
+                    frameBorder="0"
+                ></iframe>
             </div>
         </section>
     );

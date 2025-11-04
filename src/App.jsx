@@ -1,25 +1,17 @@
 import './App.css'
-import MainPage from './pages/MainPage/MainPage'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import routes from "./routes/web";
 
 function App() {
   return (
-    <>
-      <MainPage />
-    </>
+    <BrowserRouter>
+      <Routes>
+        {routes.map(({ path, element }, index) => (
+          <Route key={index} path={path} element={element} />
+        ))}
+      </Routes>
+    </BrowserRouter>
   )
 }
 
 export default App
-
-// import CitiesList from "./api/requests/FetchCities";
-
-// function App() {
-//   return (
-//     <div>
-//       <h1>Мой проект</h1>
-//       <CitiesList />
-//     </div>
-//   );
-// }
-
-// export default App;
