@@ -9,6 +9,7 @@ import ApplicationModal from "../../components/modals/ApplicationModal";
 import WhyUs from "../../components/sections/whyUs/WhyUs";
 import ApplicationForm from "../../components/sections/applicationForm/ApplicationForm";
 import Contacts from "../../components/sections/contacts/Contacts";
+import FooterSection from "../../components/sections/footerSection/FooterSection";
 
 export default function MainPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,6 +27,7 @@ export default function MainPage() {
             {/* <SocContacts /> */}
             <ApplicationForm messageApi={messageApi} />
             <Contacts />
+            <FooterSection />
 
             {/* Модалка */}
             {isModalOpen && (
