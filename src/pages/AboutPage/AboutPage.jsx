@@ -1,9 +1,15 @@
+import { useEffect, useRef } from "react";
 import MainMenu from "../../components/mainMenu/MainMenu";
+import FooterSection from "../../components/sections/footerSection/FooterSection";
+import gsap from "gsap";
+
 
 export default function AboutPage() {
+    const sectionsRef = useRef([]);
+
     const sections = [
         {
-            title: "Почему «Сапсан»?",
+            title: "Почему «Сапсан»",
             text: `Название компании мы выбрали не случайно. 
 Сапсан — самая быстрая, точная и дисциплинированная птица в мире. 
 Эти качества мы воплотили в логистике: скорость перевозки, точность решений и надёжность в работе с каждым клиентом.`
@@ -35,35 +41,71 @@ SAPSAN TL всегда остаётся на шаг впереди, чтобы �
         },
     ];
 
+    useEffect(() => {
+        let ctx;
+
+        (async () => {
+            const { gsap } = await import("gsap");
+            const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+            gsap.registerPlugin(ScrollTrigger);
+
+            ctx = gsap.context(() => {
+                sectionsRef.current.forEach((el) => {
+                    gsap.fromTo(
+                        el,
+                        { opacity: 0, y: 40 },
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.8,
+                            ease: "power3.out",
+                            scrollTrigger: {
+                                trigger: el,
+                                start: "top 85%",
+                                toggleActions: "play none none reverse",
+                            },
+                        }
+                    );
+                });
+            });
+        })();
+
+        return () => ctx?.revert();
+    }, []);
+
     return (
-        <div className="min-h-screen bg-gradient-to-br from-black via-neutral-900 to-neutral-950 text-white">
-            <MainMenu />
+        <>
+            <div className="min-h-screen bg-gradient-to-br bg-[#242424] text-white pb-10">
+                <MainMenu />
 
-            <div className="pt-[90px] px-4 max-w-6xl mx-auto">
-                <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-14">
-                    О компании <span className="text-blue-400">SAPSAN TL</span>
-                </h1>
+                <div className="pt-[90px] px-4 max-w-6xl mx-auto">
+                    <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-14">
+                        О компании <span className="text-amber-400">SAPSAN TL</span>
+                    </h1>
 
-                <div className="flex flex-col gap-10">
-                    {sections.map((item, idx) => (
-                        <div
-                            key={idx}
-                            className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6 md:p-8 transition hover:border-blue-400/60 backdrop-blur-md shadow-lg"
-                        >
-                            <div className="flex items-center gap-3 mb-4">
-                                <span className="text-3xl">{item.icon}</span>
-                                <h2 className="text-2xl md:text-3xl font-semibold">
-                                    {item.title}
-                                </h2>
+                    <div className="flex flex-col gap-10">
+                        {sections.map((item, idx) => (
+                            <div
+                                key={idx}
+                                ref={(el) => (sectionsRef.current[idx] = el)}
+                                className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-6 md:p-8 backdrop-blur-md shadow-lg"
+                            >
+                                <div className="flex justify-end gap-3 mb-4">
+                                    <h2 className="text-2xl md:text-3xl font-semibold">
+                                        {item.title}
+                                    </h2>
+                                </div>
+
+                                <p className="text-neutral-300 whitespace-pre-line leading-relaxed">
+                                    {item.text}
+                                </p>
                             </div>
-
-                            <p className="text-neutral-300 whitespace-pre-line leading-relaxed">
-                                {item.text}
-                            </p>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <FooterSection />
+        </>
     );
 }

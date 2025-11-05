@@ -120,7 +120,7 @@ export default function Contacts() {
                 </div>
             </div>
 
-            <div>
+            <div className="w-screen relative left-1/2 right-1/2 ml-[-50vw] mr-[-50vw]">
                 <iframe
                     src="https://yandex.ru/map-widget/v1/?um=constructor%3Ad4e2611309451076324e730a7ac84643c5330214c9208ebe21c5c840284bfa45&amp;source=constructor"
                     width="100%"
