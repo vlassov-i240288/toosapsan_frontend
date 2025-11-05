@@ -64,15 +64,15 @@ export default function MainMenu() {
                         onClick={() => setOpen(!open)}
                     >
                         <span
-                            className={`block h-0.5 bg-neutral-900 rounded origin-center transition-all duration-300 transform ${open ? "rotate-45 translate-y-2.5" : ""
+                            className={`block h-1 bg-neutral-900 rounded origin-center transition-all duration-300 transform ${open ? "rotate-45 translate-y-2" : ""
                                 }`}
                         />
                         <span
-                            className={`block h-0.5 bg-neutral-900 rounded origin-center transition-all duration-300 ${open ? "opacity-0" : ""
+                            className={`block h-1 bg-neutral-900 rounded origin-center transition-all duration-300 ${open ? "opacity-0" : ""
                                 }`}
                         />
                         <span
-                            className={`block h-0.5 bg-neutral-900 rounded origin-center transition-all duration-300 transform ${open ? "-rotate-45 -translate-y-2.5" : ""
+                            className={`block h-1 bg-neutral-900 rounded origin-center transition-all duration-300 transform ${open ? "-rotate-45 -translate-y-2.5" : ""
                                 }`}
                         />
                     </button>
