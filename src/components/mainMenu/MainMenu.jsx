@@ -60,7 +60,7 @@ export default function MainMenu() {
                 <div className="">
                     {/* Бургер-кнопка */}
                     <button
-                        className="burger md:hidden"
+                        className="burger"
                         onClick={() => setOpen(!open)}
                     >
                         <span className={`line ${open ? "line--top-open" : ""}`} />
