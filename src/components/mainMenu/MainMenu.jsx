@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import logo from "../../assets/images/logo.svg";
+import logo from "../../assets/images/Logo.svg";
 import { BiNotepad, BiLayer, BiIdCard } from "react-icons/bi";
 import { gsap } from "gsap";
 import { Link } from "react-router-dom";
