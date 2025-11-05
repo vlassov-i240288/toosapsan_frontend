@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/images/logo.svg";
 import { BiNotepad, BiLayer, BiIdCard } from "react-icons/bi";
 import { gsap } from "gsap";
 import { Link } from "react-router-dom";
@@ -52,11 +52,8 @@ export default function MainMenu() {
         <>
             <nav className="center fixed top-0 left-0 w-full flex justify-between h-[80px] items-center shadow bg-white text-black z-50">
                 <div className="">
-                    <Link className="relative" to="/">
-                        <img className="w-30" src={logo} alt="logo" />
-                        <span className="absolute italic font-bold w-[130px] top-[6px] left-[18px] text-[20px]">
-                            TOO SAPSAN TL
-                        </span>
+                    <Link to="/">
+                        <img className="w-[150px]" src={logo} alt="logo" />
                     </Link>
                 </div>
 
@@ -138,7 +135,7 @@ export default function MainMenu() {
                     </li>
                     <li>
                         <a className="flex items-center gap-3" href="">
-                            <FaListCheck  />
+                            <FaListCheck />
                             Услуги
                         </a>
                     </li>
@@ -150,7 +147,7 @@ export default function MainMenu() {
                     </li>
                     <li>
                         <a className="flex items-center gap-3" href="">
-                            <PiUsersThreeLight  />
+                            <PiUsersThreeLight />
                             Клиентам
                         </a>
                     </li>
