@@ -7,7 +7,7 @@ import { FaListCheck } from "react-icons/fa6";
 import { IoEarthOutline } from "react-icons/io5";
 import { FaUsers } from "react-icons/fa";
 import { PiUsersThreeLight } from "react-icons/pi";
-
+import "./MainMenu.css";
 
 
 
@@ -60,21 +60,12 @@ export default function MainMenu() {
                 <div className="">
                     {/* Бургер-кнопка */}
                     <button
-                        className="flex flex-col justify-between w-8 h-[22px] md:hidden relative z-50"
+                        className="burger md:hidden"
                         onClick={() => setOpen(!open)}
                     >
-                        <span
-                            className={`block h-1 bg-neutral-900 rounded origin-center transition-all duration-300 transform ${open ? "rotate-45 translate-y-2" : ""
-                                }`}
-                        />
-                        <span
-                            className={`block h-1 bg-neutral-900 rounded origin-center transition-all duration-300 ${open ? "opacity-0" : ""
-                                }`}
-                        />
-                        <span
-                            className={`block h-1 bg-neutral-900 rounded origin-center transition-all duration-300 transform ${open ? "-rotate-45 -translate-y-2.5" : ""
-                                }`}
-                        />
+                        <span className={`line ${open ? "line--top-open" : ""}`} />
+                        <span className={`line ${open ? "line--middle-open" : ""}`} />
+                        <span className={`line ${open ? "line--bottom-open" : ""}`} />
                     </button>
 
                     {/* Десктоп меню */}
