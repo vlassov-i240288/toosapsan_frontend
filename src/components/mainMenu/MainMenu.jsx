@@ -60,12 +60,12 @@ export default function MainMenu() {
                 <div className="">
                     {/* Бургер-кнопка */}
                     <button
-                        className="burger"
+                        className="burger md:hidden"
                         onClick={() => setOpen(!open)}
                     >
-                        <span className={`line ${open ? "line--top-open" : ""}`} />
-                        <span className={`line ${open ? "line--middle-open" : ""}`} />
-                        <span className={`line ${open ? "line--bottom-open" : ""}`} />
+                        <span className={`line ${open ? "line--top-open" : ""}`}></span>
+                        <span className={`line ${open ? "line--middle-open" : ""}`}></span>
+                        <span className={`line ${open ? "line--bottom-open" : ""}`}></span>
                     </button>
 
                     {/* Десктоп меню */}
