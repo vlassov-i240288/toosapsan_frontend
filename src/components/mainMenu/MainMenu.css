@@ -1,34 +1,43 @@
+/* Контейнер меню */
+.menu {
+    position: relative;
+    z-index: 50;
+}
+
+/* Бургер-кнопка */
 .burger {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 2rem;       /* w-8 */
-  height: 22px;      /* h-[22px] */
-  position: relative;
-  z-index: 50;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 32px;
+    height: 22px;
+    cursor: pointer;
 }
 
-/* Base line */
-.burger .line {
-  display: block;
-  height: 4px;              /* h-1 → 4px */
-  background: #171717;      /* neutral-900 */
-  border-radius: 4px;       /* rounded */
-  transform-origin: center; /* origin-center */
-  transition: all 0.3s ease;
+/* Полоски */
+.line {
+    display: block;
+    width: 32px;
+    height: 3px;
+    background-color: #0f0f0f;
+    border-radius: 3px;
+
+    /* важно для safari */
+    transform-origin: center;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* TOP OPEN */
-.burger .line--top-open {
-  transform: rotate(45deg) translateY(8px);
+/* Верхняя при открытии */
+.line--top-open {
+    transform: translateY(9px) rotate(45deg);
 }
 
-/* MIDDLE OPEN */
-.burger .line--middle-open {
-  opacity: 0;
+/* Средняя при открытии — исчезает */
+.line--middle-open {
+    opacity: 0;
 }
 
-/* BOTTOM OPEN */
-.burger .line--bottom-open {
-  transform: rotate(-45deg) translateY(-10px);
+/* Нижняя при открытии */
+.line--bottom-open {
+    transform: translateY(-9px) rotate(-45deg);
 }
