@@ -3,14 +3,7 @@ import logo from "../../assets/images/Logo.svg";
 import { BiNotepad, BiLayer, BiIdCard } from "react-icons/bi";
 import { gsap } from "gsap";
 import { Link } from "react-router-dom";
-import { FaListCheck } from "react-icons/fa6";
-import { IoEarthOutline } from "react-icons/io5";
-import { FaUsers } from "react-icons/fa";
-import { PiUsersThreeLight } from "react-icons/pi";
 import "./MainMenu.css";
-
-
-
 
 export default function MainMenu() {
     const [open, setOpen] = useState(false);
@@ -57,7 +50,7 @@ export default function MainMenu() {
                     </Link>
                 </div>
 
-                <div className="">
+                <div className="lg:hidden">
                     {/* Бургер-кнопка */}
                     <button
                         className="burger"
@@ -68,15 +61,17 @@ export default function MainMenu() {
                         <span className={`line ${open ? "line--bottom-open" : ""}`} />
                     </button>
 
-                    {/* Десктоп меню */}
-                    <ul className="hidden md:flex gap-10">
+                    
+                </div>
+                {/* Десктоп меню */}
+                    <ul className="hidden gap-10 lg:flex">
                         <li>
                             <Link className="flex items-center gap-1 font-bold text-[17px]" to="/about">
                                 <BiNotepad />
                                 О компании
                             </Link>
                         </li>
-                        <li>
+                        {/* <li>
                             <a className="flex items-center gap-1 font-bold text-[17px]" href="">
                                 <FaListCheck />
                                 Услуги
@@ -99,9 +94,8 @@ export default function MainMenu() {
                                 <BiIdCard />
                                 Контакты
                             </a>
-                        </li>
+                        </li> */}
                     </ul>
-                </div>
             </nav>
 
             {/* Оверлей */}
@@ -124,7 +118,7 @@ export default function MainMenu() {
                             О компании
                         </Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <a className="flex items-center gap-3" href="">
                             <FaListCheck />
                             Услуги
@@ -147,7 +141,7 @@ export default function MainMenu() {
                             <BiIdCard />
                             Контакты
                         </a>
-                    </li>
+                    </li> */}
                 </ul>
 
                 {/* Кнопка с волнами */}

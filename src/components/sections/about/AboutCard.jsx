@@ -6,7 +6,7 @@ export default function AboutCard({ heading, text, onOpenModal, count }) {
 
                     {/* FRONT */}
                     <div
-                        className="w-40 h-40 cursor-pointer md:[backface-visibility:hidden]"
+                        className="w-40 h-40 cursor-pointer md:[backface-visibility:hidden] md:w-80 md:justify-self-center lg:w-100 lg:h-60"
                         onClick={() => {
                             if (window.innerWidth < 1024) onOpenModal(); // только на мобилках
                         }}

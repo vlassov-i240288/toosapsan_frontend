@@ -8,14 +8,14 @@ import { PiTelegramLogoLight } from "react-icons/pi";
 export default function Contacts() {
     return (
         <section className="bg-[#242424] px-5">
-            <div className="relative pb-10 md:top-[-33px] lg:top-[-48px] xl:top-[-64px]">
+            <div className="relative pb-10 md:top-[-18px] lg:top-[-35px] xl:top-[-64px]">
                 <h2 className="absolute -top-4 text-[#4c4c4c] text-[40px] md:text-[80px] lg:text-[120px] xl:text-[160px] font-black uppercase">
                     Контакты:
                 </h2>
             </div>
 
             <div className="flex flex-col gap-10">
-                <div className="text-white text-l pt-5">
+                <div className="text-white text-l pt-5 lg:pt-15">
                     <ul className="flex flex-col gap-3">
                         <li>
                             <a

@@ -77,7 +77,7 @@ export default function FooterSection() {
                             href={href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className={`${bg} cursor-pointer w-6 h-6 flex justify-center items-center rounded-4xl 
+                            className={`${bg} cursor-pointer w-6 h-6 md:h-10 md:w-10 flex justify-center items-center rounded-4xl 
                                    transition duration-300 hover:brightness-90`}
                         >
                             <div className="text-sm text-white">{icon}</div>

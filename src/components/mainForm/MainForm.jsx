@@ -186,7 +186,7 @@ function MainForm({ messageApi, onSuccess, children }) {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-2 ">
 
             {/* Тип перевозки */}
             <p className="text-white text-2xl font-bold">Вид перевозки :</p>

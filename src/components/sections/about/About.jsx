@@ -18,8 +18,8 @@ export default function About({ onOpenModal }) {   // <- принимаем пр
                         <AboutCountCard topText="вагонов" bottomText="отправлено" target={5217} />
                         <AboutCountCard topText="долгосрочных" bottomText="контрактов" target={14} />
                     </div>
-                    <div className="flex flex-col gap-2 lg:gap-30 md:gap-10">
-                        <div className="flex justify-between gap-1 lg:gap-30 md:gap-10 md:flex-row lg:flex-row xl:flex-row">
+                    <div className="flex flex-col gap-3 lg:gap-30 md:gap-5">
+                        <div className="flex justify-between gap-1 md:flex-row lg:flex-row xl:flex-row">
                             <AboutCard
                                 heading="Проектные перевозки"
                                 // text="доставка грузов между городами и регионами."
@@ -34,7 +34,7 @@ export default function About({ onOpenModal }) {   // <- принимаем пр
                             />
                         </div>
 
-                        <div className="flex justify-between gap-1 lg:gap-30 md:gap-10 md:flex-row lg:flex-row xl:flex-row">
+                        <div className="flex justify-between gap-1 md:flex-row lg:flex-row xl:flex-row">
                             <AboutCard
                                 heading="Автомобильные перевозки"
                                 // text="доставка грузов из Китая в Европу и обратно."
@@ -49,7 +49,7 @@ export default function About({ onOpenModal }) {   // <- принимаем пр
                             />
                         </div>
 
-                        <div className="flex justify-between gap-1 lg:gap-30 md:gap-10 md:flex-row lg:flex-row xl:flex-row">
+                        <div className="flex justify-between gap-1  md:flex-row lg:flex-row xl:flex-row">
                             <AboutCard
                                 heading="Транзитные пеервозки"
                                 // text="доставка грузов из Китая в Европу и обратно."
