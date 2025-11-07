@@ -16,7 +16,7 @@ function ApplicationModal({ onClose, messageApi, children }) {
     };
 
     return (
-        <div className={`fixed inset-0 flex items-center justify-center z-50 transition-opacity duration-300 ${show ? "bg-[#242424]/80 opacity-100" : "opacity-0"}`}>
+        <div className={`fixed inset-0 flex items-center justify-center z-200 transition-opacity duration-300 ${show ? "bg-[#242424]/80 opacity-100" : "opacity-0"}`}>
             <div className={`border border-amber-400 p-5 rounded bg-[#242424] w-[90%] max-w-2xl transform transition-all duration-300 ${show ? "scale-100 opacity-100" : "scale-95 opacity-0"}`}>
 
                 <button

@@ -43,7 +43,7 @@ export default function MainMenu() {
 
     return (
         <>
-            <nav className="center fixed top-0 left-0 w-full flex justify-between h-[80px] items-center shadow bg-white text-black z-50">
+            <nav className="center fixed top-0 left-0 w-screen flex justify-between h-[80px] items-center shadow bg-white text-black z-50">
                 <div className="">
                     <Link to="/">
                         <img className="w-[150px]" src={logo} alt="logo" />
@@ -64,7 +64,8 @@ export default function MainMenu() {
                     
                 </div>
                 {/* Десктоп меню */}
-                    <ul className="hidden gap-10 lg:flex">
+                <div className="hidden lg:block">
+                    <ul className="gap-10 lg:flex">
                         <li>
                             <Link className="flex items-center gap-1 font-bold text-[17px]" to="/about">
                                 <BiNotepad />
@@ -96,6 +97,8 @@ export default function MainMenu() {
                             </a>
                         </li> */}
                     </ul>
+                </div>
+                    
             </nav>
 
             {/* Оверлей */}

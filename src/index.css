@@ -24,6 +24,13 @@
   }
 }
 
+/* @media (width: 412px) {
+  .center {
+    padding-left: calc(50% - 288px);
+    padding-right: calc(50% - 288px);
+  }
+} */
+
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .center {
