@@ -1,0 +1,19 @@
+header {
+    /* background-image: url(../../../assets/images/fon.jpg); */
+    background-image: url(../../../assets/images/intro-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* transform: rotate(180deg) */
+}
+
+.heading_fon {
+    color: rgba(36, 36, 36, 0.05);
+}
+
+@media (min-width: 320px) and (max-width: 426px) {
+  .heading_fon {
+    /* transform: rotate(-75deg);
+    font-size: 85px */
+    display: none;
+  }
+}
